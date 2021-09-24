@@ -12,6 +12,7 @@ def str_to_int(string: str) -> int:
                     result_list.append(id_j)
                 elif j == i:
                     result_list.append(id_j * 10 ** (len(string) - 1 - id_i))
+
     else:
         raise DataValidException("Строка " + string + " не является валидной!")
     return sum(result_list)
