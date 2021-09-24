@@ -18,7 +18,6 @@ def str_to_int(string: str) -> int:
     return sum(result_list)
 
 
-
 s_input = input()
 print('Введённое число:', s_input, '->', type(s_input))
 s = str_to_int(s_input)
