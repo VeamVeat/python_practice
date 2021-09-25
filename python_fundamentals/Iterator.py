@@ -18,7 +18,7 @@ class MyIterator:
 
 
 string = 'wis'
-iterator = iter(string)
+iterator = MyIterator(string)
 
 print(next(iterator))
 print(next(iterator))
