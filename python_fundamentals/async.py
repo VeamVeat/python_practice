@@ -5,8 +5,8 @@ import asyncio
 async def get_images_cat():
 
     header = {'x-api-key': 'bd847905-bc01-4650-ab52- ace3247ee273'}
-    img = r.get('https://api.thecatapi.com/v1/images/search', headers=header)
-    img_url: str = img.json()[0]["url"]
+    img_info = r.get('https://api.thecatapi.com/v1/images/search', headers=header)
+    img_url: str = img_info.json()[0]["url"]
 
     img_file = img_url.split('/')[-1]
     img_name = img_file[:-4]
@@ -14,7 +14,7 @@ async def get_images_cat():
 
     img = r.get(f'{img_url}', headers=header)
 
-    out = open(f"pictures_of_cats/{img_name}.{img_expansion}", "wb")
+    out = open(f"Cats/{img_name}.{img_expansion}", "wb")
     out.write(img.content)
     out.close()
 
