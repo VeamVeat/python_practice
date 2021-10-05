@@ -1,8 +1,7 @@
 
 def my_generator(list_of_string: list) -> int:
-    string_length = len(list_of_string)
-    for line_in_the_list in range(string_length):
-        yield len(list_of_string[string_length - line_in_the_list - 1])
+    for line_in_the_list in list_of_string[::-1]:
+        yield len(line_in_the_list)
 
 
 my_list = ['one', 'two', 'three', 'long_number']
