@@ -30,7 +30,6 @@ class CookBook:
         return list(unique_ingredients)
 
     def __next__(self):
-        print(self.dic_cook_book)
         if self.index <= len(self.dic_cook_book) - 1:
             i = self.index
             self.index += 1
