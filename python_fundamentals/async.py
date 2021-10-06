@@ -6,10 +6,9 @@ async def get_images_cat(img_future):
     img_future = await img_future
 
     if img_future.status_code == 200:
+
         img_url: str = img_future.json()[0]["url"]
-
         img_name = img_url.split('/')[-1]
-
         img_content = r.get(img_url).content
 
         with open(f"Cats/{img_name}", "wb") as file:
