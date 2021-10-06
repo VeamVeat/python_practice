@@ -2,11 +2,11 @@ import requests as r
 import asyncio
 
 
-async def get_images_cat(img_info):
-    img_info = await img_info
+async def get_images_cat(img_future):
+    img_future = await img_future
 
-    if img_info.status_code == 200:
-        img_url: str = img_info.json()[0]["url"]
+    if img_future.status_code == 200:
+        img_url: str = img_future.json()[0]["url"]
 
         img_name = img_url.split('/')[-1]
 
