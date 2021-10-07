@@ -1,16 +1,16 @@
 from math import sin, cos
+from datetime import datetime
 
 
 class Timer:
-    from time import time
 
     def __init__(self, fun):
         self.function = fun
 
     def __call__(self, *args, **kwargs):
-        start_time = self.time()
+        start_time = datetime.now()
         result = self.function(*args, **kwargs)
-        end_time = self.time()
+        end_time = datetime.now()
         print(f" Время начала работы функции: {start_time}\n Время окончания работы функции: {end_time}\n"
               f" Общее время работы функции: {end_time - start_time}\n")
         return result
