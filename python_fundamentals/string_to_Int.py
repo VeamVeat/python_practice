@@ -12,18 +12,18 @@ def str_to_int(user_line: str) -> int:
 
     if is_number:
 
-        str_number = {'0': 0, '1': 1, '2': 2,
-                      '3': 3, '4': 4, '5': 5,
-                      '6': 6, '7': 7, '8': 8, '9': 9}
+        str_numbers = {'0': 0, '1': 1, '2': 2,
+                       '3': 3, '4': 4, '5': 5,
+                       '6': 6, '7': 7, '8': 8, '9': 9}
 
         last_item_in_line = len(user_line) - 1
         result_list = []
 
         for id_in_user_string, symbol_in_user_string in enumerate(user_line):
             if id_in_user_string == last_item_in_line:
-                result_list.append(str_number[symbol_in_user_string])
+                result_list.append(str_numbers[symbol_in_user_string])
             else:
-                result_list.append(str_number[symbol_in_user_string] * 10 ** (len(user_line) - 1 - id_in_user_string))
+                result_list.append(str_numbers[symbol_in_user_string] * 10 ** (len(user_line) - 1 - id_in_user_string))
 
     else:
         raise Exception("Строка " + user_line + " не является валидной!")
