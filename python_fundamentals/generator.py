@@ -8,5 +8,5 @@ my_list = ['one', 'two', 'three', 'long_number']
 item_in_my_list = my_generator(my_list)
 
 
-for item in range(len(my_list)):
+for item in my_list:
     print(next(item_in_my_list))
