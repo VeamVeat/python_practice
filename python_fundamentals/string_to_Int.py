@@ -23,7 +23,8 @@ def str_to_int(user_line: str) -> int:
             if id_in_user_string == last_item_in_line:
                 result_list.append(str_numbers[symbol_in_user_string])
             else:
-                result_list.append(str_numbers[symbol_in_user_string] * 10 ** (len(user_line) - 1 - id_in_user_string))
+
+                result_list.append(str_numbers[symbol_in_user_string] * 10 ** (last_item_in_line - id_in_user_string))
 
     else:
         raise Exception("Строка " + user_line + " не является валидной!")
