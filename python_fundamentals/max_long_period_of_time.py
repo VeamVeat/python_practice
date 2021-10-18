@@ -1,11 +1,12 @@
 
 def longest_time(h: int, m: int, s: int) -> str:
-    time_hour_minute_second = {
-        f'{h}': h * 3600,
-        f'{m}': m * 60,
-        f'{s}': s,
+    max_time = {
+        h: h * 3600,
+        m: m * 60,
+        s: s,
     }
-    return max(time_hour_minute_second, key=time_hour_minute_second.get)
+
+    return max(max_time, key=max_time.get)
 
 
-print("Максимально длительный промежуток времени -> ", longest_time(15, 955, 59400))
+print("Максимально длительный промежуток времени -> ", longest_time(1, 59, 3598))
