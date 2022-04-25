@@ -1,56 +1,43 @@
-from random import shuffle
+from collections import Counter
 
 
 class CookBook:
-    def __init__(self, dic_cook_book: dict, random_key=False):
-
-        self.index = 0
-        self.dic_cook_book = self.__get_unique_ingredients(dic_cook_book, random_key)
-
-    @staticmethod
-    def __get_unique_ingredients(dic_cook_book: dict, random_key: bool) -> list:
-        unique_ingredients = {}
-
-        for all_ingredients in dic_cook_book["Cook Book"]:
-            for key_ingredients in all_ingredients:
-                for value_ingredients in all_ingredients[key_ingredients]:
-                    if value_ingredients in unique_ingredients:
-                        unique_ingredients[f"{value_ingredients}"] += 1
-                    else:
-                        unique_ingredients[f"{value_ingredients}"] = 1
-
-        if random_key:
-            random_list_unique_ingredients = list(unique_ingredients.keys())
-            shuffle(random_list_unique_ingredients)
-            return random_list_unique_ingredients
-        else:
-            unique_ingredients = {k: unique_ingredients[k] for k in
-                                  sorted(unique_ingredients, key=unique_ingredients.get, reverse=True)}
-
-        return list(unique_ingredients)
-
-    def __next__(self):
-        if self.index <= len(self.dic_cook_book) - 1:
-            i = self.index
-            self.index += 1
-            return self.dic_cook_book[i]
-        else:
-            raise StopIteration
-
     def __iter__(self):
         return self
 
+    def __init__(self, cook_book: dict, sort=False):
+        self.cook_book = cook_book
+        self.sort = sort
+        self.unique_ingredients = self.__get_unique_ingredients()
+        self.item = 0
+        self.count_elements_unique_ingredients = len(self.unique_ingredients)
 
-item = {"Cook Book": [
+    def __get_unique_ingredients(self):
+        ingredients = []
+        for dish in self.cook_book['Cook Book']:
+            ingredients.extend(*dish.values())
+        if not self.sort:
+            return list(set(ingredients))
+        else:
+            counter_ingredient = Counter(ingredients)
+            return [key for key, _ in counter_ingredient.most_common()]
+
+    def __next__(self):
+        if self.item == self.count_elements_unique_ingredients:
+            raise StopIteration
+        else:
+            unique_ingredient = self.unique_ingredients[self.item]
+            self.item += 1
+            return unique_ingredient
+
+
+book = {"Cook Book": [
         {"Dish A": ["oil", "bacon", "oil"]},
         {"Dish B": ["eggs", "oil", "eggs"]}
      ]}
 
 
-d = CookBook(item, random_key=True)
-
-print(next(d))
-print(next(d))
-print(next(d))
-print(next(d))
+book_ingredients = CookBook(book, sort=True)
+for ingredient in book_ingredients:
+    print(ingredient)
 
