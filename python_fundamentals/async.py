@@ -27,7 +27,6 @@ async def get_cat_img():
     img_name = img.split('.')[0]
     img_extension = img.split('.')[-1]
 
-    print(url_img)
     await save_img(url_img, img_name, img_extension)
 
 
